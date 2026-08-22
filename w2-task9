@@ -1,0 +1,25 @@
+This is the Deque / Sliding Window problem from HackerRank. The optimal solution uses a set + sliding window, giving O(n) time.
+
+Python
+n, m = map(int, input().split())
+nums = list(map(int, input().split()))
+
+window = set()
+
+# First window
+for i in range(m):
+    window.add(nums[i])
+
+max_unique = len(window)
+
+# Slide the window
+for i in range(m, n):
+    # Remove the element leaving the window
+    window.discard(nums[i - m])
+
+    # Add the new element
+    window.add(nums[i])
+
+    max_unique = max(max_unique, len(window))
+
+print(max_unique)
